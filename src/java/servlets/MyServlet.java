@@ -35,7 +35,7 @@ public class MyServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("Unicode");
+        request.setCharacterEncoding("UTF-8");
         String path = request.getServletPath();
         
         switch (path) {
