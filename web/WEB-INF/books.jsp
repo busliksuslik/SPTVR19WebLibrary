@@ -1,13 +1,16 @@
 <%-- 
-    Document   : index
-    Created on : Nov 24, 2020, 2:31:44 PM
+    Document   : books
+    Created on : Nov 26, 2020, 2:16:43 PM
     Author     : user
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <style>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <style>
         ul {
           list-style-type: none;
           margin: 0;
@@ -36,20 +39,14 @@
             padding: 0px;
         }
     </style>
-    <head>
-        <title>library</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <ul>
-            <li><a class="active" href="index.jsp">Home</a></li>
-            <li><a href="addBook">add book</a></li>
-            <li><a href="books">books</a></li>
+            <li><a  href="index.jsp">Home</a></li>
+            <li><a  href="addBook">add book</a></li>
+            <li><a class="active" href="books">books</a></li>
             <li><a href="addUser">add reader</a></li>
         </ul>
-        <h1 style="color: #FF00FF; font-family: comic sans ms">Welcome to the jungle</h1>
-        <p>${info}</p>
-        
+        <h1>WIP!</h1>
     </body>
 </html>

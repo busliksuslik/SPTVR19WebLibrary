@@ -5,8 +5,13 @@
  */
 package servlets;
 
+import entites.Book;
+import entites.User;
+import facades.BookFacade;
+import facades.UserFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +24,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "MyServlet", urlPatterns = {
     "/addBook",
-    "/createBook"
+    "/createBook",
+    "/addUser",
+    "/createUser",
+    "/books"
 })
 public class MyServlet extends HttpServlet {
+    @EJB
+    private BookFacade bookFacade;
+    @EJB
+    private UserFacade userFacade;
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,8 +60,46 @@ public class MyServlet extends HttpServlet {
                 String name = request.getParameter("name");
                 String author = request.getParameter("author");
                 String year = request.getParameter("year");
-                request.setAttribute("info", "Данные получены  " + name + "  " + author + "  " + year);
+                if ("".equals(name)  || name == null ||
+                        "".equals(author)  || author == null ||
+                        "".equals(year)  || year == null){
+                    request.setAttribute("info", "INCORRECT");
+                    request.setAttribute("name", "name");
+                    request.setAttribute("author", "author");
+                    request.setAttribute("year", "year");
+                    request.getRequestDispatcher("/WEB-INF/addBookForm.jsp").forward(request, response);
+                    break;
+                }
+                
+                Book book = new Book(name,author,Integer.parseInt(year));
+                bookFacade.create(book);
+                request.setAttribute("info", "Данные получены  " +book.toString());
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
+                break;
+            }
+            case "/addUser":{
+                request.getRequestDispatcher("/WEB-INF/addUserForm.jsp").forward(request, response);
+                break;
+            }
+            case "/createUser":{
+                String name = request.getParameter("name");
+                String password = request.getParameter("password");
+                if ("".equals(name)  || name == null ||
+                        "".equals(password)  || password == null ){
+                    request.setAttribute("info", "INCORRECT");
+                    request.setAttribute("name", "name");
+                    request.setAttribute("author", "password");
+                    request.getRequestDispatcher("/WEB-INF/addBookForm.jsp").forward(request, response);
+                    break;
+                }
+                User user = new User(name,password);
+                userFacade.create(user);
+                request.setAttribute("info", "Данные получены  " +user.toString());
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                break;
+            }
+            case "/books":{
+                request.getRequestDispatcher("/WEB-INF/books.jsp").forward(request, response);
                 break;
             }
         }

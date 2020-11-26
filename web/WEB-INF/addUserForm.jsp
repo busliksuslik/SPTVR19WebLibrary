@@ -1,6 +1,6 @@
 <%-- 
-    Document   : addBookForm
-    Created on : Nov 24, 2020, 1:59:54 PM
+    Document   : addUserForm
+    Created on : Nov 26, 2020, 1:59:40 PM
     Author     : user
 --%>
 
@@ -47,15 +47,14 @@
     <body>
         <ul>
             <li><a  href="index.jsp">Home</a></li>
-            <li><a class="active"  href="addBook">add book</a></li>
+            <li><a  href="addBook">add book</a></li>
             <li><a href="books">books</a></li>
-            <li><a  href="addUser">add reader</a></li>
+            <li><a class="active" href="addUser">add reader</a></li>
         </ul>
-        <h1 style = "color: #FF00FF; font-family: comic sans ms;"> Add book</h1>
-        <form action = "createBook" method="POST">
+        <h1 style = "color: #FF00FF; font-family: comic sans ms;"> Add user</h1>
+        <form action = "createUser" method="POST">
             <input placeholder="Name" name="name" value="${name}"><br>
-            <input placeholder="Author" name = "author"value="${author}"><br>
-            <input placeholder="Year of publishing" name="year" type="number"value="${year}">
+            <input placeholder="Password" name = "password"value="${password}"><br>
             <input style="" type="submit">
         </form>
     </body>
