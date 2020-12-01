@@ -45,34 +45,37 @@ public class Book implements Serializable, EntityInterface{
         this.year   = year;
     }
 
+    @Override
+    public String toString() {
+        return "name=" + name + ", author=" + author + ", year=" + year;
+    }
+
     public String getName() {
         return name;
     }
 
-    public String getPrice() {
+    public String getAuthor() {
         return author;
     }
 
-    public int getAmount() {
+    public int getYear() {
         return year;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public void setName(String name) {
         this.name = name;
     }
-
-    public void setPrice(int price) {
-        this.author = author;
-    }
-
-    public void setAmount(int amount) {
-        this.year = amount;
-    }
-
-    @Override
-    public String toString() {
-        return "name=" + name + ", author=" + author + ", year=" + year;
-    }
+    
+    
+    
     
     
 }

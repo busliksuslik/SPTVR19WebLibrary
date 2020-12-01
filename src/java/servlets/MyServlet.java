@@ -2,7 +2,9 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */ 
+// Алгоритм создания веб приложения в джава ее
+// 
 package servlets;
 
 import entites.Book;
@@ -11,6 +13,7 @@ import facades.BookFacade;
 import facades.UserFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +30,8 @@ import javax.servlet.http.HttpServletResponse;
     "/createBook",
     "/addUser",
     "/createUser",
-    "/books"
+    "/books",
+    "/users"
 })
 public class MyServlet extends HttpServlet {
     @EJB
@@ -64,9 +68,9 @@ public class MyServlet extends HttpServlet {
                         "".equals(author)  || author == null ||
                         "".equals(year)  || year == null){
                     request.setAttribute("info", "INCORRECT");
-                    request.setAttribute("name", "name");
-                    request.setAttribute("author", "author");
-                    request.setAttribute("year", "year");
+                    request.setAttribute("name", name);
+                    request.setAttribute("author", author);
+                    request.setAttribute("year", year);
                     request.getRequestDispatcher("/WEB-INF/addBookForm.jsp").forward(request, response);
                     break;
                 }
@@ -87,8 +91,8 @@ public class MyServlet extends HttpServlet {
                 if ("".equals(name)  || name == null ||
                         "".equals(password)  || password == null ){
                     request.setAttribute("info", "INCORRECT");
-                    request.setAttribute("name", "name");
-                    request.setAttribute("author", "password");
+                    request.setAttribute("name", name);
+                    request.setAttribute("author", password);
                     request.getRequestDispatcher("/WEB-INF/addBookForm.jsp").forward(request, response);
                     break;
                 }
@@ -99,9 +103,18 @@ public class MyServlet extends HttpServlet {
                 break;
             }
             case "/books":{
+                List<Book> listBooks = bookFacade.findAll();
+                request.setAttribute("listBooks", listBooks);
                 request.getRequestDispatcher("/WEB-INF/books.jsp").forward(request, response);
                 break;
             }
+            case "/users":{
+                List<User> listUsers = userFacade.findAll();
+                request.setAttribute("listUsers", listUsers);
+                request.getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+                break;
+            }
+            
         }
         
     }

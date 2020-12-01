@@ -1,9 +1,3 @@
-<%-- 
-    Document   : books
-    Created on : Nov 26, 2020, 2:16:43 PM
-    Author     : user
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -45,15 +39,15 @@
         <ul id = "ulbar">
             <li id = "libar"><a id ="bara" href="index.jsp">Home</a></li>
             <li id = "libar"><a id ="bara" href="addBook">add book</a></li>
-            <li id = "libar"><a id ="bara" class="active" href="books">books</a></li>
+            <li id = "libar"><a id ="bara"  href="books">books</a></li>
             <li id = "libar"><a id ="bara" href="addUser">add reader</a></li>
-            <li id = "libar"><a id ="bara" href="users">users</a></li>
+            <li id = "libar"><a id ="bara" class="active" href="users">users</a></li>
         </ul>
-        <h1>Books</h1>
+        <h1>Users</h1>
         <br>
         <ul>
-            <c:forEach var="book" items="${listBooks}">
-                <li>${book.name} ${book.author} ${book.year}</li>
+            <c:forEach var="user" items="${listUsers}">
+                <li>${user.login} | ${user.password}</li>
             </c:forEach>
             
         </ul>

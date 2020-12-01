@@ -50,6 +50,7 @@
             <li><a  href="addBook">add book</a></li>
             <li><a href="books">books</a></li>
             <li><a class="active" href="addUser">add reader</a></li>
+            <li><a href="users">users</a></li>
         </ul>
         <h1 style = "color: #FF00FF; font-family: comic sans ms;"> Add user</h1>
         <form action = "createUser" method="POST">
