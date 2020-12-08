@@ -1,9 +1,5 @@
-<%-- 
-    Document   : addBookForm
-    Created on : Nov 24, 2020, 1:59:54 PM
-    Author     : user
---%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,18 +43,28 @@
     <body>
         <ul>
             <li><a  href="index.jsp">Home</a></li>
-            <li><a class="active"  href="addBook">add book</a></li>
+            <li><a  href="addBook">add book</a></li>
             <li><a href="books">books</a></li>
             <li><a  href="addUser">add reader</a></li>
             <li><a href="users">users</a></li>
-            <li><a href="addHistory">addHistory</a></li>
+            <li><a class="active" href="addHistory">addHistory</a></li>
         </ul>
-        <h1 style = "color: #FF00FF; font-family: comic sans ms;"> Add book</h1>
-        <form action = "createBook" method="POST">
-            <input placeholder="Name" name="name" value="${name}"><br>
-            <input placeholder="Author" name = "author"value="${author}"><br>
-            <input placeholder="Year of publishing" name="year" type="number"value="${year}">
+        <h1 style = "color: #FF00FF; font-family: comic sans ms;"> Add History</h1>
+        ${info}
+        <label for="books">Choose a book:</label>
+        <form action = "createHistory" method="POST">
+            <select name="book" size = "10">
+                <c:forEach var="book" items="${listBooks}">
+                    <option>${book.name} ${book.author} ${book.year}</option>
+                </c:forEach>
+            </select>
+            <select name="user" size = "10">
+                <c:forEach var="user" items="${listUsers}">
+                    <option> ${user.login} </option>
+                </c:forEach>
+            </select>
             <input style="" type="submit">
         </form>
     </body>
 </html>
+

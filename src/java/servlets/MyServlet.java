@@ -31,7 +31,9 @@ import javax.servlet.http.HttpServletResponse;
     "/addUser",
     "/createUser",
     "/books",
-    "/users"
+    "/users",
+    "/addHistory",
+    "/createHistory",
 })
 public class MyServlet extends HttpServlet {
     @EJB
@@ -112,6 +114,21 @@ public class MyServlet extends HttpServlet {
                 List<User> listUsers = userFacade.findAll();
                 request.setAttribute("listUsers", listUsers);
                 request.getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+                break;
+            }
+            case "/addHistory":{
+                List<Book> listBooks = bookFacade.findAll();
+                request.setAttribute("listBooks", listBooks);
+                List<User> listUsers = userFacade.findAll();
+                request.setAttribute("listUsers", listUsers);
+                request.getRequestDispatcher("/WEB-INF/addHistoryForm.jsp").forward(request, response);
+                break;
+            }
+            case "/createHistory":{
+                String book = request.getParameter("book");
+                String user = request.getParameter("user");
+                request.setAttribute("info", book + "  " + user);
+                request.getRequestDispatcher("/WEB-INF/addHistoryForm.jsp").forward(request, response);
                 break;
             }
             

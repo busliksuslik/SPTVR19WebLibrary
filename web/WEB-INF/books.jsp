@@ -48,6 +48,7 @@
             <li id = "libar"><a id ="bara" class="active" href="books">books</a></li>
             <li id = "libar"><a id ="bara" href="addUser">add reader</a></li>
             <li id = "libar"><a id ="bara" href="users">users</a></li>
+            <li id = "libar"><a id ="bara" href="addHistory">addHistory</a></li>
         </ul>
         <h1>Books</h1>
         <br>

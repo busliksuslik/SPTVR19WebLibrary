@@ -42,6 +42,7 @@
             <li id = "libar"><a id ="bara"  href="books">books</a></li>
             <li id = "libar"><a id ="bara" href="addUser">add reader</a></li>
             <li id = "libar"><a id ="bara" class="active" href="users">users</a></li>
+            <li id = "libar"><a id ="bara" class="active" href="addHistory">addHistory</a></li>
         </ul>
         <h1>Users</h1>
         <br>
@@ -49,7 +50,6 @@
             <c:forEach var="user" items="${listUsers}">
                 <li>${user.login} | ${user.password}</li>
             </c:forEach>
-            
         </ul>
     </body>
 </html>

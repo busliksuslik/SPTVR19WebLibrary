@@ -48,6 +48,7 @@
             <li><a href="books">books</a></li>
             <li><a href="addUser">add reader</a></li>
             <li><a href="users">users</a></li>
+            <li><a href="addHistory">addHistory</a></li>
         </ul>
         <h1 style="color: #FF00FF; font-family: comic sans ms">Welcome to the jungle</h1>
         <p>${info}</p>
