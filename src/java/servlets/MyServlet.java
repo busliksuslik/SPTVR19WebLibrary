@@ -8,11 +8,14 @@
 package servlets;
 
 import entites.Book;
+import entites.History;
 import entites.User;
 import facades.BookFacade;
+import facades.HistoryFacade;
 import facades.UserFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -34,12 +37,16 @@ import javax.servlet.http.HttpServletResponse;
     "/users",
     "/addHistory",
     "/createHistory",
+    "/returnHistoryForm",
+    "/returnHistory"
 })
 public class MyServlet extends HttpServlet {
     @EJB
     private BookFacade bookFacade;
     @EJB
     private UserFacade userFacade;
+    @EJB
+    private HistoryFacade historyFacade;
     
 
     /**
@@ -125,10 +132,33 @@ public class MyServlet extends HttpServlet {
                 break;
             }
             case "/createHistory":{
-                String book = request.getParameter("book");
-                String user = request.getParameter("user");
-                request.setAttribute("info", book + "  " + user);
+                String bookstr = request.getParameter("book");
+                Book book = bookFacade.find(Long.parseLong(bookstr));
+                String userstr = request.getParameter("user");
+                User user = userFacade.find(Long.parseLong(userstr));
+                History history = new History(book, user, new GregorianCalendar().getTime(), null);
+                historyFacade.create(history);
+                request.setAttribute("info","Добавлена выдана");
                 request.getRequestDispatcher("/WEB-INF/addHistoryForm.jsp").forward(request, response);
+                break;
+            }
+            case "/returnHistoryForm":{
+                List<History> listHistories = historyFacade.findAll();
+                request.setAttribute("listRead",listHistories);
+                request.getRequestDispatcher("/WEB-INF/returnHistoryForm.jsp").forward(request, response);
+                break;
+            }
+            case "/returnHistory":{
+                String historystr = request.getParameter("historyId");
+                if (historystr == null || "".equals(historystr)){
+                    request.setAttribute("info","choose book");
+                    request.getRequestDispatcher("/WEB-INF/returnHistoryForm.jsp").forward(request, response);
+                    break;
+                }
+                History history = historyFacade.find(Long.parseLong(historystr));
+                history.setTakeOn(new GregorianCalendar().getTime());
+                request.setAttribute("info","zaeb");
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
                 break;
             }
             

@@ -48,6 +48,7 @@
             <li><a  href="addUser">add reader</a></li>
             <li><a href="users">users</a></li>
             <li><a class="active" href="addHistory">addHistory</a></li>
+            <li><a href="returnHistoryForm">returnBook</a></li>
         </ul>
         <h1 style = "color: #FF00FF; font-family: comic sans ms;"> Add History</h1>
         ${info}
@@ -55,12 +56,12 @@
         <form action = "createHistory" method="POST">
             <select name="book" size = "10">
                 <c:forEach var="book" items="${listBooks}">
-                    <option>${book.name} ${book.author} ${book.year}</option>
+                    <option value="${book.id}">${book.name} ${book.author} ${book.year}</option>
                 </c:forEach>
             </select>
             <select name="user" size = "10">
                 <c:forEach var="user" items="${listUsers}">
-                    <option> ${user.login} </option>
+                    <option value="${user.id}"> ${user.login} </option>
                 </c:forEach>
             </select>
             <input style="" type="submit">

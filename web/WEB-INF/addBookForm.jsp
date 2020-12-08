@@ -52,6 +52,7 @@
             <li><a  href="addUser">add reader</a></li>
             <li><a href="users">users</a></li>
             <li><a href="addHistory">addHistory</a></li>
+            <li><a href="returnHistoryForm">returnBook</a></li>
         </ul>
         <h1 style = "color: #FF00FF; font-family: comic sans ms;"> Add book</h1>
         <form action = "createBook" method="POST">

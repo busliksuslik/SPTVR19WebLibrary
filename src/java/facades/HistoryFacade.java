@@ -6,6 +6,7 @@
 package facades;
 
 import entites.History;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,15 @@ public class HistoryFacade extends AbstractFacade<History> {
 
     public HistoryFacade() {
         super(History.class);
+    }
+
+    public List<History> findHistoriesWithRead() {
+        
+        try {
+            return (List<History>) em.createQuery("SELECT h FROM history WHERE h.takeOff = NULL");
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }
